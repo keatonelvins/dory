@@ -1,0 +1,26 @@
+[project]
+name = "dory"
+version = "0.1.0"
+description = "playing with nemo"
+readme = "README.md"
+authors = [
+    { name = "k", email = "keatone@gmail.com" }
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "nemo-automodel[moe]",
+    "flash-attn==2.7.4.post1",
+    "grouped_gemm"
+]
+
+[build-system]
+requires = ["uv_build>=0.8.24,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+no-build-isolation-package = ["flash-attn", "grouped_gemm"]
+
+[tool.uv.sources]
+nemo-automodel = { git = "https://github.com/NVIDIA-NeMo/Automodel.git", rev = "a5eb299" }
+grouped_gemm = { git = "https://github.com/fanshiqing/grouped_gemm", rev = "v1.1.4" }
+
