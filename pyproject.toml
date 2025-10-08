@@ -22,5 +22,19 @@ build-backend = "uv_build"
 flash-attn = [{ requirement = "torch", match-runtime = true }]
 
 [tool.uv.sources]
+torch = [
+    { index = "pytorch", marker = "sys_platform != 'darwin'" },
+    { index = "pypi", marker = "sys_platform == 'darwin'" },
+]
 nemo-automodel = [{ git = "https://github.com/NVIDIA-NeMo/Automodel.git", rev = "f06e8b5" }]
 nv-grouped-gemm = [{ git = "https://github.com/fanshiqing/grouped_gemm.git", rev = "0813748" }]
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+explicit = true
