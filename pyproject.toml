@@ -8,20 +8,28 @@ authors = [
 ]
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "torch==2.7.1",
-    "nemo-automodel[moe]",
+    "deep-ep",
     "flash-attn==2.7.4.post1",
+    "nemo-automodel[moe]",
+    "ninja",
     "nv-grouped-gemm",
+    "nvidia-nvshmem-cu12",
+    "torch==2.7.1",
 ]
 
 [build-system]
-requires = ["uv_build>=0.8.24,<0.9.0"]
+requires = ["uv_build==0.9.0"]
 build-backend = "uv_build"
 
+[tool.uv]
+no-build-isolation-package = ["deep_ep", "flash-attn", "nv-grouped-gemm"]
+
 [tool.uv.extra-build-dependencies]
+deep_ep = ["torch", "ninja", "nvidia-nvshmem-cu12"]
 flash-attn = [{ requirement = "torch", match-runtime = true }]
 
 [tool.uv.sources]
+deep-ep = [{ git = "https://github.com/deepseek-ai/DeepEP", rev = "e02e4d2"  }]
 torch = [
     { index = "pytorch", marker = "sys_platform != 'darwin'" },
     { index = "pypi", marker = "sys_platform == 'darwin'" },
