@@ -13,6 +13,8 @@ uv sync
 ```
 Sanity check install with `uv run python -c "import deep_ep; print('Success')"`
 
+Benchmark with `uv run torchrun --nproc-per-node=8 src/dory/dory.py`
+
 ### nvidia prereqs for DeepEP
 
 DeepEP makes install a little tricky. See the [docs](https://github.com/deepseek-ai/DeepEP/blob/main/third-party/README.md) for more details.

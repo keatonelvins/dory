@@ -210,7 +210,7 @@ dependencies = [
 requires-dist = [
     { name = "deep-ep", git = "https://github.com/deepseek-ai/DeepEP?rev=e02e4d2" },
     { name = "flash-attn", specifier = "==2.7.4.post1" },
-    { name = "nemo-automodel", extras = ["moe"], git = "https://github.com/NVIDIA-NeMo/Automodel.git?rev=f06e8b5" },
+    { name = "nemo-automodel", extras = ["moe"], git = "https://github.com/NVIDIA-NeMo/Automodel.git?rev=8d9bfb9" },
     { name = "ninja" },
     { name = "nv-grouped-gemm", git = "https://github.com/fanshiqing/grouped_gemm.git?rev=0813748" },
     { name = "nvidia-nvshmem-cu12" },
@@ -479,7 +479,7 @@ wheels = [
 [[package]]
 name = "nemo-automodel"
 version = "0.1.0rc0"
-source = { git = "https://github.com/NVIDIA-NeMo/Automodel.git?rev=f06e8b5#f06e8b5f02eda7a89b6942ac46be0935d07f9d12" }
+source = { git = "https://github.com/NVIDIA-NeMo/Automodel.git?rev=8d9bfb9#8d9bfb90e3d8a45d45ab1a9f12ece42b9d1bb6a9" }
 dependencies = [
     { name = "bitsandbytes", marker = "platform_machine == 'x86_64' and sys_platform != 'darwin'" },
     { name = "datasets" },
