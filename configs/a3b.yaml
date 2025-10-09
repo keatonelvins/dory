@@ -24,8 +24,8 @@ benchmark:
   nsys_ranks: []
 
 step_scheduler:
-  global_batch_size: 512
-  local_batch_size: 4
+  global_batch_size: 64
+  local_batch_size: 1
   ckpt_every_steps: 1000
   val_every_steps: 1000
   num_epochs: 1
@@ -81,11 +81,11 @@ checkpoint:
 
 loss_fn:
   _target_: nemo_automodel.components.loss.masked_ce.MaskedCrossEntropy
-  fp32_upcast: false
+  fp32_upcast: true
 
 dataset:
   _target_: nemo_automodel.components.datasets.llm.mock_iterable_dataset.MockIterableDataset
-  seq_len: 4096
+  seq_len: 32768
   num_samples: 100000
 
 dataloader:
