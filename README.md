@@ -1,4 +1,4 @@
-Some scaffolding to easily install the fast version of nemo-automodel
+Playground for the fast version of nemo-automodel
 
 Includes:
 - ported megatron backend
@@ -13,11 +13,11 @@ uv sync
 ```
 Sanity check install with `uv run python -c "import deep_ep; print('Success')"`
 
-### Install Prereqs
+### nvidia prereqs for DeepEP
 
 DeepEP makes install a little tricky. See the [docs](https://github.com/deepseek-ai/DeepEP/blob/main/third-party/README.md) for more details.
 
-You will need the nvidia usual suspects! Verify this all run okay:
+You will need the nvidia usual suspects! Verify these all run okay:
 ```bash
 # basic cuda
 nvidia-smi
@@ -35,16 +35,21 @@ ldconfig -p | grep ibverbs
 echo $LD_LIBRARY_PATH | tr ':' '\n' | grep cuda
 ```
 
-If not, install before retrying `uv sync`. Here's what I need to do for my gcp env:
+If not, install before retrying `uv sync`. Assuming at least CUDA toolkit is installed, you may also need to:
 ```bash
+# install nccl from source
 wget -q https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
 sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt-get update
+sudo apt install libnccl2 libnccl-dev
+
+# install rmda headers and cudnn from meta-packages
 sudo apt-get install -y libibverbs-dev
 sudo apt-get install -y cudnn9-cuda-12
-sudo apt install libnccl2 libnccl-dev
-export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+# make sure path to CUDA toolkit install is on LD_LIBRARY_PATH
+export CUDA_HOME=/usr/local/cuda
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
 ```
 
 #### Multinode
